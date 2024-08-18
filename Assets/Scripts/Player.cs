@@ -18,9 +18,15 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private KitchenObject KitchenObject;
     [SerializeField] private Transform targetPoint;
 
-    private ClearCounter SelectedClearCounter;
+    private Counter SelectedCounter;
 
-    public static event EventHandler<ClearCounter> OnCounterSelected;
+    public static event EventHandler<Counter> OnCounterSelected;
+
+    public class KitchenObjectParent
+    {
+        public IKitchenObjectParent kitchenObjectParent;
+        public Counter SelectedCounter;
+    }
 
     void Start()
     {
@@ -36,9 +42,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void HandelInteraction(object sender, EventArgs e)
     {
-        if (SelectedClearCounter != null)
+        if (SelectedCounter != null)
         {
-            SelectedClearCounter.Interaction();
+            SelectedCounter.Interaction();
         }
     }
 
@@ -56,17 +62,17 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
         if (Physics.Raycast(transform.position,lastInteractionDir,out RaycastHit hitInfo,maxDistance,layerMask))
         {
-            if (hitInfo.transform.TryGetComponent(out ClearCounter clearCounter))
+            if (hitInfo.transform.TryGetComponent(out Counter SelectedCounter))
             {
-                SelectedClearCounter = clearCounter;
-                OnCounterSelected?.Invoke(this, SelectedClearCounter);
+                this.SelectedCounter = SelectedCounter;
+                OnCounterSelected?.Invoke(this, SelectedCounter);
             }
             Debug.Log($"Hit info : {hitInfo.transform}");
         }
         else 
         {
-            SelectedClearCounter = null;
-             OnCounterSelected?.Invoke(this, SelectedClearCounter);
+            SelectedCounter = null;
+             OnCounterSelected?.Invoke(this, SelectedCounter);
         }
 
     }
@@ -121,6 +127,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     {
         return isPlayerWalking;
     }
+
     void OnDrawGizmos()
     {
       Gizmos.DrawCube(transform.position, Vector3.one);
@@ -131,15 +138,14 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     {
         if (KitchenObject == null)
         {
-            KitchenObject = SelectedClearCounter.LendKitchenObject();
-            SelectedClearCounter.ClearKitchenObject();
+            KitchenObject = SelectedCounter.LendKitchenObject();
+            SelectedCounter.ClearKitchenObject();
             KitchenObject.SetKitchenObjectParent(this);
         }     
 
         else
         {
-          //  SelectedClearCounter.SetKitchenObject(KitchenObject);
-            KitchenObject.SetKitchenObjectParent(SelectedClearCounter);
+            KitchenObject.SetKitchenObjectParent(new KitchenObjectParent());
             KitchenObject = null;
             isContainKitchenObject = false;
         }

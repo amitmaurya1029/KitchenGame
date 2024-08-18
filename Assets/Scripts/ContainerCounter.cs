@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContainerCounter : MonoBehaviour, IKitchenObjectParent
+public class ContainerCounter : Counter, IKitchenObjectParent
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     [SerializeField] private Transform Target;
@@ -10,7 +10,7 @@ public class ContainerCounter : MonoBehaviour, IKitchenObjectParent
     private KitchenObject kitchenObject;
     private bool isContainKitchenObject;
 
-    public void Interaction()
+    public override void Interaction()
     {
         if (!isContainKitchenObject)    
         {
@@ -21,7 +21,13 @@ public class ContainerCounter : MonoBehaviour, IKitchenObjectParent
         
     }
 
-    public void ClearKitchenObject()
+    public override KitchenObject LendKitchenObject()
+    {
+        isContainKitchenObject = false;
+        return kitchenObject;
+    }
+
+    public override void ClearKitchenObject()
     {
         kitchenObject = null;
     }
@@ -41,4 +47,5 @@ public class ContainerCounter : MonoBehaviour, IKitchenObjectParent
     {
         this.kitchenObject = kitchenObject;
     }
+   
 }
