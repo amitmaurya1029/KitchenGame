@@ -150,10 +150,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         KitchenObject = null;
     }
 
-    public bool IsContainKitchenObject(bool hasKitchenObject)
+    public void IsContainKitchenObject(bool hasKitchenObject)
     {
         isContainKitchenObject = hasKitchenObject;
-        return isContainKitchenObject;
     }
 
     public void SetKitchenObject(KitchenObject kitchenObject)
@@ -163,5 +162,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent
      public Transform GetTargetPoint()
     {
         return targetPoint;
+    }
+    public bool HasKitchenObject()
+    {
+        return isContainKitchenObject;
     }
 }

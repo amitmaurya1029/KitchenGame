@@ -6,8 +6,10 @@ using UnityEngine;
 public interface IKitchenObjectParent 
 {
    public void ClearKitchenObject();
-   public bool IsContainKitchenObject(bool hasKitchenObject);
+   public void IsContainKitchenObject(bool hasKitchenObject);
+   public bool HasKitchenObject();
    public void SetKitchenObject(KitchenObject kitchenObject);
    public Transform GetTargetPoint();
+
    
 }
