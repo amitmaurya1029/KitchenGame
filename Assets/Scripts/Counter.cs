@@ -11,7 +11,7 @@ public class Counter : MonoBehaviour,IKitchenObjectParent
 
     public GameObject AmitObject;
 
-    public virtual void Interaction()
+    public virtual void Interaction(Player player)
     {
 
     }

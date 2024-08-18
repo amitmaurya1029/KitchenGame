@@ -8,14 +8,9 @@ public class ClearCounter : Counter
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
-    public override void Interaction()
+    public override void Interaction(Player player)
     {
-        if (!HasKitchenObject())    
-        {
-            KitchenObject kitchenObject = Instantiate(kitchenObjectSO.prefab, GetTargetPoint().position, Quaternion.identity).gameObject.GetComponent<KitchenObject>();
-            kitchenObject.SetKitchenObjectParent(this);
-        }
-        
+
     }
 
 
