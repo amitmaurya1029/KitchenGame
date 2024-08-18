@@ -22,12 +22,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     public static event EventHandler<Counter> OnCounterSelected;
 
-    public class KitchenObjectParent
-    {
-        public IKitchenObjectParent kitchenObjectParent;
-        public Counter SelectedCounter;
-    }
-
     void Start()
     {
        gameInput.OnInteraction += HandelInteraction;
@@ -145,7 +139,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
         else
         {
-            KitchenObject.SetKitchenObjectParent(new KitchenObjectParent());
+            KitchenObject.SetKitchenObjectParent((IKitchenObjectParent)SelectedCounter);
             KitchenObject = null;
             isContainKitchenObject = false;
         }

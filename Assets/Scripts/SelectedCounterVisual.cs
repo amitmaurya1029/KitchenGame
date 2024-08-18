@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class SelectedCounterVisual : MonoBehaviour
 {
-    private GameObject selectedCounter;
-    [SerializeField] private ClearCounter clearCounter;
+    private GameObject selectedCounterVisual;
+    [SerializeField] private Counter Counter;
 
     void Awake()
     {
-        selectedCounter = transform.GetChild(0).gameObject;
+        selectedCounterVisual = transform.GetChild(0).gameObject;
     }
 
     void Start()
@@ -18,23 +18,23 @@ public class SelectedCounterVisual : MonoBehaviour
         Player.OnCounterSelected += SetCounterSelected;   
     }
 
-    private void SetCounterSelected(object sender, ClearCounter e)
+    private void SetCounterSelected(object sender, Counter e)
     {
-        if (e == clearCounter)
+        if (e == Counter)
         {
             Debug.Log($"clear counter name : {e}");
             if (e != null)
             {
-                selectedCounter.SetActive(true);
+                selectedCounterVisual.SetActive(true);
             }
             else
             {
-                selectedCounter.SetActive(false);
+                selectedCounterVisual.SetActive(false);
             }
         }
         else
         {
-            selectedCounter.SetActive(false);
+            selectedCounterVisual.SetActive(false);
         }
     }
 

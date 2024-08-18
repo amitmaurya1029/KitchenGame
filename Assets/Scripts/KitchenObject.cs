@@ -6,13 +6,15 @@ using UnityEngine.Animations;
 public class KitchenObject : MonoBehaviour
 {
     public KitchenObjectSO kitchenObjectSO;
-    private IKitchenObjectParent KitchenObjectparent;
+    public IKitchenObjectParent KitchenObjectparent;
+    
 
-    public void SetKitchenObjectParent(IKitchenObjectParent KitchenObjectParent)
+    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObject)
     {
-        this.KitchenObjectparent = KitchenObjectParent;
+        this.KitchenObjectparent = kitchenObject;
+
         KitchenObjectparent.SetKitchenObject(this);
-        transform.parent = KitchenObjectParent.GetTargetPoint();
+        transform.parent = KitchenObjectparent.GetTargetPoint();
         transform.localPosition = Vector3.zero;
         KitchenObjectparent.IsContainKitchenObject(true);
        // KitchenObjectparent.ClearKitchenObject();
