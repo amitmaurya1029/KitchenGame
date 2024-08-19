@@ -22,6 +22,11 @@ public class Counter : MonoBehaviour,IKitchenObjectParent
         return kitchenObject;
     }
 
+    public KitchenObject GetKitchenObject()
+    {
+        return kitchenObject;
+    }
+
     public  void ClearKitchenObject()
     {
         kitchenObject = null;

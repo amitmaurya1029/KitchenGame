@@ -10,6 +10,7 @@ public interface IKitchenObjectParent
    public bool HasKitchenObject();
    public void SetKitchenObject(KitchenObject kitchenObject);
    public Transform GetTargetPoint();
+   public KitchenObject GetKitchenObject();
 
    
 }

@@ -45,6 +45,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
  
     private void HandelInteraction()
     {
+        Debug.Log($"Hit info : 1");
         Vector2 vectorInput = gameInput.GetMovementVector();
         Vector3 MoveDir = new Vector3(vectorInput.x, 0,vectorInput.y);
         if(MoveDir != Vector3.zero)
@@ -53,9 +54,10 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         }
 
         float maxDistance = 1f;
-
+        Debug.Log($"Hit info : 2");
         if (Physics.Raycast(transform.position,lastInteractionDir,out RaycastHit hitInfo,maxDistance,layerMask))
         {
+            Debug.Log($"Hit info : 3");
             if (hitInfo.transform.TryGetComponent(out Counter SelectedCounter))
             {
                 this.SelectedCounter = SelectedCounter;
@@ -144,6 +146,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             isContainKitchenObject = false;
         }
     }
+
+    public KitchenObject GetKitchenObject()
+    {
+        return KitchenObject;
+    } 
 
     public void ClearKitchenObject()
     {

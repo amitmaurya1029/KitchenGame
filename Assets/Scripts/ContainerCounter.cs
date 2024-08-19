@@ -12,17 +12,17 @@ public class ContainerCounter : Counter
 
     public override void Interaction(Player player)
     {
-        if (!HasKitchenObject())    
+        if (!player.HasKitchenObject())    
         {
             KitchenObject kitchenObject = Instantiate(kitchenObjectSO.prefab, GetTargetPoint().position, Quaternion.identity).gameObject.GetComponent<KitchenObject>();
             kitchenObject.SetKitchenObjectParent(player);
             OnContainerCounterInteraction?.Invoke(this, EventArgs.Empty);
         }
+        else
+        {
+            Debug.Log($"there is a KitchenObject already");
+        }
         
     }
 
-   
-
-   
-   
 }
