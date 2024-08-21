@@ -10,7 +10,7 @@ public class GameInput : MonoBehaviour
 {
     private InputActionSystem inputActionSystem;
     public event EventHandler OnInteraction;
-    public event EventHandler OnPickKitchenObject;
+    public event EventHandler OnCuttingObject;
 
     void Start()
     {
@@ -18,12 +18,12 @@ public class GameInput : MonoBehaviour
         inputActionSystem.Player.Enable();
         inputActionSystem.Player.Interaction.performed += InteractionPerformed;
         inputActionSystem.Player.Attack.performed += Attack;  
-        inputActionSystem.Player.PickObject.performed += PickKitchenObject;    
+        inputActionSystem.Player.Cutting.performed += PickKitchenObject;    
     }
 
     private void PickKitchenObject(InputAction.CallbackContext context)
     {
-        OnPickKitchenObject?.Invoke(this, EventArgs.Empty);
+        OnCuttingObject?.Invoke(this, EventArgs.Empty);
         Debug.Log($"OnpickEvent got call :");
     }
 

@@ -55,7 +55,7 @@ public partial class @InputActionSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PickObject"",
+                    ""name"": ""Cutting"",
                     ""type"": ""Button"",
                     ""id"": ""0bff13dc-2c1a-4533-aba0-2a16707578ff"",
                     ""expectedControlType"": ""Button"",
@@ -156,11 +156,11 @@ public partial class @InputActionSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""222831df-c81f-4822-887a-6e84a18e3c7f"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PickObject"",
+                    ""action"": ""Cutting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -186,7 +186,7 @@ public partial class @InputActionSystem: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
-        m_Player_PickObject = m_Player.FindAction("PickObject", throwIfNotFound: true);
+        m_Player_Cutting = m_Player.FindAction("Cutting", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,7 +251,7 @@ public partial class @InputActionSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Interaction;
-    private readonly InputAction m_Player_PickObject;
+    private readonly InputAction m_Player_Cutting;
     public struct PlayerActions
     {
         private @InputActionSystem m_Wrapper;
@@ -259,7 +259,7 @@ public partial class @InputActionSystem: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
-        public InputAction @PickObject => m_Wrapper.m_Player_PickObject;
+        public InputAction @Cutting => m_Wrapper.m_Player_Cutting;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -278,9 +278,9 @@ public partial class @InputActionSystem: IInputActionCollection2, IDisposable
             @Interaction.started += instance.OnInteraction;
             @Interaction.performed += instance.OnInteraction;
             @Interaction.canceled += instance.OnInteraction;
-            @PickObject.started += instance.OnPickObject;
-            @PickObject.performed += instance.OnPickObject;
-            @PickObject.canceled += instance.OnPickObject;
+            @Cutting.started += instance.OnCutting;
+            @Cutting.performed += instance.OnCutting;
+            @Cutting.canceled += instance.OnCutting;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -294,9 +294,9 @@ public partial class @InputActionSystem: IInputActionCollection2, IDisposable
             @Interaction.started -= instance.OnInteraction;
             @Interaction.performed -= instance.OnInteraction;
             @Interaction.canceled -= instance.OnInteraction;
-            @PickObject.started -= instance.OnPickObject;
-            @PickObject.performed -= instance.OnPickObject;
-            @PickObject.canceled -= instance.OnPickObject;
+            @Cutting.started -= instance.OnCutting;
+            @Cutting.performed -= instance.OnCutting;
+            @Cutting.canceled -= instance.OnCutting;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -328,6 +328,6 @@ public partial class @InputActionSystem: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
-        void OnPickObject(InputAction.CallbackContext context);
+        void OnCutting(InputAction.CallbackContext context);
     }
 }

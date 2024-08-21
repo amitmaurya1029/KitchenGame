@@ -11,13 +11,17 @@ public class BaseClass : MonoBehaviour
         
     } 
 
-    public void Interact()
+    public virtual void Interact()
     {
-        Debug.Log($" Got the intercation :0");
+        Debug.Log($"Got the intercation :0");
     }
 
     public void InteractWithDevice(string deviceName)
     {
         Debug.Log($"Device got activate : {deviceName}");
+    }
+    public void RandomFun()
+    {
+        Debug.Log($"Randon fun got called :");
     }
 }

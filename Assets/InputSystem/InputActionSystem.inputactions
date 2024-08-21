@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PickObject",
+                    "name": "Cutting",
                     "type": "Button",
                     "id": "0bff13dc-2c1a-4533-aba0-2a16707578ff",
                     "expectedControlType": "Button",
@@ -134,11 +134,11 @@
                 {
                     "name": "",
                     "id": "222831df-c81f-4822-887a-6e84a18e3c7f",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PickObject",
+                    "action": "Cutting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

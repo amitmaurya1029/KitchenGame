@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class ClearCounter : Counter
 {
-    [SerializeField] private KitchenObjectSO kitchenObjectSO;
-
     public override void Interaction(Player player)
     {
         if (!HasKitchenObject())
@@ -24,9 +22,6 @@ public class ClearCounter : Counter
             }
             else
             {
-                // player has NO kitchenobject
-                // player.SetKitchenObject(GetKitchenObject());
-                // GetKitchenObject().SetKitchenObjectParent(player);
 
             }
         }

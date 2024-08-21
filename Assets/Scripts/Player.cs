@@ -25,7 +25,15 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     void Start()
     {
        gameInput.OnInteraction += HandelInteraction;
-       gameInput.OnPickKitchenObject += PickKitchenObject;
+       gameInput.OnCuttingObject += CuttingKitchenObject;
+    }
+
+    private void CuttingKitchenObject(object sender, EventArgs e)
+    {
+        if (SelectedCounter != null)
+        {
+            SelectedCounter.CuttingkitchenObject();
+        }
     }
 
     void Update()
@@ -41,6 +49,8 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             SelectedCounter.Interaction(this);
         }
     }
+
+   
 
  
     private void HandelInteraction()

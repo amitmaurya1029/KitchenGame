@@ -7,16 +7,20 @@ public class Controller : MonoBehaviour
     //[SerializeField] private ObjectA objectA;
     private IElectronicDevice ObjectA;
     private IElectronicDevice objectB;
+    private ObjectB objectb;
+    
     void Start()
     {
-        //objectA.GetObjectAInfo();
         
-        ObjectA.InteractWithDevice("Laptop");
+        
+        //ObjectA.InteractWithDevice("Laptop");
         
         objectB = FindObjectOfType<ObjectB>();
+        objectb = FindObjectOfType<ObjectB>();
         objectB.InteractWithDevice("mobile");
+        objectb.Interact();
         
-       // baseClass.Interact();   
+       
     }
 
 }

@@ -10,6 +10,7 @@ public class ObjectB : BaseClass, IElectronicDevice
         Debug.Log($" start function got hit form baseclass CLASS  : objectb ");
        // Interact();
         // InteractWithDevice("Cell phone");
+        ClassS.ReleaseFlares();
     }
 
 
@@ -18,6 +19,10 @@ public class ObjectB : BaseClass, IElectronicDevice
         Debug.Log($"object b parent got set :");
     }
 
-    
-    
+    public override void Interact()
+    {
+        Debug.Log($" Got the intercation :0 only interaction override fun got called : ");
+    }
+
+
 }

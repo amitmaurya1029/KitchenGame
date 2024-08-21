@@ -15,7 +15,10 @@ public class Counter : MonoBehaviour,IKitchenObjectParent
     {
 
     }
-
+    public virtual void CuttingkitchenObject()
+    {
+        
+    }
     public KitchenObject LendKitchenObject()
     {
         isContainKitchenObject = false;
