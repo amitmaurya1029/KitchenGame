@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CuttingCounter : Counter
 {
-    [SerializeField] private List<CuttingRecpie> cuttingRecpies = new List<CuttingRecpie>(); 
+    [SerializeField] private List<CuttingRecpieSO> cuttingRecpies = new List<CuttingRecpieSO>(); 
 
     public override void Interaction(Player player)
     {
@@ -46,32 +46,24 @@ public class CuttingCounter : Counter
 
     public override void CuttingkitchenObject()
     {
-         if (HasKitchenObject())
+         if (HasKitchenObject() && GetKitchenObject().IsSliceableObject != SliceableObject.NotSliceable)
          {
-            GameObject OutPutObject = InputOutput();
-            SpawnCuttingObject(OutPutObject);
-           
-            //ClearKitchenObject();
+           SpawnCuttingObject(InputOutput());
          }
 
     }
 
     private GameObject InputOutput()
     {
-        foreach(CuttingRecpie recpie  in cuttingRecpies)
+        foreach(CuttingRecpieSO recpie  in cuttingRecpies)
         {
-            
-            Debug.Log($"Sliced gameobject name : 2 {recpie.NormalObject.name} + {GetKitchenObject().GetComponent<KitchenObject>().kitchenObjectSO}");
-            if (recpie.NormalObject == GetKitchenObject().GetComponent<KitchenObject>().kitchenObjectSO)
+            if (recpie.Raw == GetKitchenObject().GetComponent<KitchenObject>().kitchenObjectSO)
             {
-                Debug.Log($"Sliced gameobject name : 1 {recpie.SlicedObject.name}");
-                return recpie.SlicedObject.prefab.gameObject;
+                return recpie.Sliced.prefab.gameObject;
             }
         }
 
         return null;
-       
-
     }
 
     public void SpawnCuttingObject(GameObject outputObject)

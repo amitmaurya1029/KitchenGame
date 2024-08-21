@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
+public enum SliceableObject {Sliceable, NotSliceable}
 public class KitchenObject : MonoBehaviour
 {
     public KitchenObjectSO kitchenObjectSO;
     public IKitchenObjectParent KitchenObjectparent;
+    public SliceableObject IsSliceableObject;
     
 
     public void SetKitchenObjectParent(IKitchenObjectParent kitchenObject)

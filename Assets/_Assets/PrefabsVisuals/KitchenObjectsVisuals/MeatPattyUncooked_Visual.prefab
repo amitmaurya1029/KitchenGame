@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kitchenObjectSO: {fileID: 11400000, guid: 13b4b17180d44564ab80d6ba883aea5d, type: 2}
+  IsSliceableObject: 1
 --- !u!1001 &2911635562203194026
 PrefabInstance:
   m_ObjectHideFlags: 0
