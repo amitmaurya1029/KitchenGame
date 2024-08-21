@@ -14,9 +14,7 @@ public class ContainerCounter : Counter
     {
         if (!player.HasKitchenObject())    
         {
-            KitchenObject kitchenObject = Instantiate(kitchenObjectSO.prefab, GetTargetPoint().position, Quaternion.identity).
-            gameObject.GetComponent<KitchenObject>();
-            kitchenObject.SetKitchenObjectParent(player);
+            KitchenObject.SpawnKitchenObject(kitchenObjectSO.prefab.gameObject,GetTargetPoint(),player);
             OnContainerCounterInteraction?.Invoke(this, EventArgs.Empty);
         }
         else

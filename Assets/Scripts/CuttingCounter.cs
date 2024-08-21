@@ -69,9 +69,7 @@ public class CuttingCounter : Counter
     public void SpawnCuttingObject(GameObject outputObject)
     {
         GetKitchenObject().DestroySelf();
-        KitchenObject kitchenObject = Instantiate(outputObject, GetTargetPoint().position, Quaternion.identity).
-        gameObject.GetComponent<KitchenObject>();
-        kitchenObject.SetKitchenObjectParent(this);
+        KitchenObject kitchenObject = KitchenObject.SpawnKitchenObject(outputObject,GetTargetPoint(),this);
         SetKitchenObject(kitchenObject);
         
     }
