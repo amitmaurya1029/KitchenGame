@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Raw: {fileID: 11400000, guid: 6945b07c49c617e47aea9646703db0f9, type: 2}
   Sliced: {fileID: 11400000, guid: b744821339b5f8041a433a9129db6faf, type: 2}
+  MaxCutShot: 3

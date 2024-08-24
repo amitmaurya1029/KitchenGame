@@ -18,10 +18,10 @@ public class GameInput : MonoBehaviour
         inputActionSystem.Player.Enable();
         inputActionSystem.Player.Interaction.performed += InteractionPerformed;
         inputActionSystem.Player.Attack.performed += Attack;  
-        inputActionSystem.Player.Cutting.performed += PickKitchenObject;    
+        inputActionSystem.Player.Cutting.performed += CuttingKitchenObject;    
     }
 
-    private void PickKitchenObject(InputAction.CallbackContext context)
+    private void CuttingKitchenObject(InputAction.CallbackContext context)
     {
         OnCuttingObject?.Invoke(this, EventArgs.Empty);
         Debug.Log($"OnpickEvent got call :");
