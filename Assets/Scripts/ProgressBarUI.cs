@@ -32,13 +32,13 @@ public class ProgressBarUI : MonoBehaviour
 
     private void Show()
     {
-        imageBar.transform.parent.gameObject.SetActive(true);
+        transform.gameObject.SetActive(true);
     }
 
    
     private void Hide()
     {
-        imageBar.transform.parent.gameObject.SetActive(false);
+       transform.gameObject.SetActive(false);
     }
 
     
