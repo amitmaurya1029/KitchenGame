@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7f8da25445bb5f43a96aaa48305a29d, type: 3}
-  m_Name: CookingRecpieSO
+  m_Name: Raw-CookedPatty
   m_EditorClassIdentifier: 
-  RAW: {fileID: 11400000, guid: 13b4b17180d44564ab80d6ba883aea5d, type: 2}
-  Cooked: {fileID: 11400000, guid: d8a831b7e96fb6f4fb638a435eef4b0b, type: 2}
-  Burned: {fileID: 11400000, guid: 582a34b07294b434ab9667dc55655b94, type: 2}
+  Input: {fileID: 11400000, guid: 13b4b17180d44564ab80d6ba883aea5d, type: 2}
+  Output: {fileID: 11400000, guid: d8a831b7e96fb6f4fb638a435eef4b0b, type: 2}
   CookingTimeMax: 3

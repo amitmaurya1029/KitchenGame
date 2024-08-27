@@ -5,8 +5,22 @@ using UnityEngine;
 
 public class CookingCounter : Counter
 {
-    [SerializeField] private CookingRecpieSO cookingRecpieSO;
+    [SerializeField] private List<CookingRecpieSO> cookingRecpieSO = new List<CookingRecpieSO>();
+    [SerializeField] private float time;
 
+
+    void Start()
+    {
+        Timer();
+    }
+    void Update()
+    {
+        // if (time <= 3)
+        // {
+        //     time += Time.deltaTime;
+        // }
+    }
+    
     public override void Interaction(Player player)
     {
         if (!HasKitchenObject())
@@ -15,8 +29,6 @@ public class CookingCounter : Counter
             GetKitchenObject().SetKitchenObjectParent(this);
             player.ClearKitchenObject();
             player.IsContainKitchenObject(false);
-
-            StartCoroutine(CookingMeatPatty());
 
         }
 
@@ -33,23 +45,29 @@ public class CookingCounter : Counter
     }
 
 
-
-    private IEnumerator CookingMeatPatty()
+    private void Timer()
     {
+        while(time <= 3)
+        {
+            time += Time.deltaTime;
+        }
+    } 
 
-        // each 3 sec we exchange the gameobject
-        // give the cooked patty
-        // after 3 sec, give burned patty.
-        
-        yield return new WaitForSeconds(cookingRecpieSO.CookingTimeMax);
-        FryingPattyState(cookingRecpieSO.Cooked.prefab.GetComponent<KitchenObject>());
-        yield return new WaitForSeconds(cookingRecpieSO.CookingTimeMax);
-        FryingPattyState(cookingRecpieSO.Burned.prefab.GetComponent<KitchenObject>());
+    
 
-
+    private KitchenObjectSO InputOutput(KitchenObjectSO kitchenObject)
+    {
+        foreach (CookingRecpieSO recpie in cookingRecpieSO)
+        {
+            if (recpie.Input == kitchenObject)
+            {
+                return recpie.Output;
+            }
+            
+        }
+        return null;
 
     }
-
 
     private void FryingPattyState(KitchenObject meatPatty)
     {
@@ -62,6 +80,8 @@ public class CookingCounter : Counter
         Debug.Log($"kitchenObject Parent 101 : {GetKitchenObject().KitchenObjectparent}");
         
     }
+
+
 
 
 }

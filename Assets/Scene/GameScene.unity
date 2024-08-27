@@ -844,6 +844,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d1b0a4e8c576b5343b96ba1079401434,
         type: 2}
+    - target: {fileID: 510577682471214282, guid: d790bf4fd1b749a42820641888f19679,
+        type: 3}
+      propertyPath: cookingRecpieSO.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 510577682471214282, guid: d790bf4fd1b749a42820641888f19679,
+        type: 3}
+      propertyPath: cookingRecpieSO.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d1b0a4e8c576b5343b96ba1079401434,
+        type: 2}
+    - target: {fileID: 510577682471214282, guid: d790bf4fd1b749a42820641888f19679,
+        type: 3}
+      propertyPath: cookingRecpieSO.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 25ab22daaa32f1b4cac1abc9bc3074b9,
+        type: 2}
     - target: {fileID: 6485799988043285166, guid: d790bf4fd1b749a42820641888f19679,
         type: 3}
       propertyPath: m_Name
