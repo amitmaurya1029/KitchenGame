@@ -11,14 +11,7 @@ public class KitchenObject : MonoBehaviour
     public SliceableObject IsSliceableObject;
     
 
-    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObject)
-    {
-        this.KitchenObjectparent = kitchenObject;
-        KitchenObjectparent.SetKitchenObject(this);
-        transform.parent = KitchenObjectparent.GetTargetPoint();
-        transform.localPosition = Vector3.zero;
-        KitchenObjectparent.IsContainKitchenObject(true);
-    }
+   
 
     public void DestroySelf()
     {
@@ -31,6 +24,15 @@ public class KitchenObject : MonoBehaviour
         gameObject.GetComponent<KitchenObject>();
         kitchenObject.SetKitchenObjectParent(parent);
         return kitchenObject;
+    }
+
+    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObject)
+    {
+        this.KitchenObjectparent = kitchenObject;
+        KitchenObjectparent.SetKitchenObject(this);
+        transform.parent = KitchenObjectparent.GetTargetPoint();
+        transform.localPosition = Vector3.zero;
+        KitchenObjectparent.IsContainKitchenObject(true);
     }
      
 }
