@@ -5,11 +5,12 @@ using System.Reflection;
 using UnityEngine;
 
 
-public class CuttingCounter : Counter
+public class CuttingCounter : Counter, IHasProgressBar
 {
     [SerializeField] private List<CuttingRecpieSO> cuttingRecpies = new List<CuttingRecpieSO>(); 
     private int cuttingProgressValue;
-    public event EventHandler<CuttingProgress> OnCuttingProgress;
+    //public event EventHandler<CuttingProgress> OnCuttingProgress;
+    public event EventHandler<IHasProgressBar.ProgressBarValue> OnProgressBarIncement;
 
     public class CuttingProgress : EventArgs
     {
@@ -60,8 +61,9 @@ public class CuttingCounter : Counter
         {
             cuttingProgressValue++;
             CuttingRecpieSO cuttingRecpie = InputOutput();
-            OnCuttingProgress?.Invoke(this, new CuttingProgress{barFillAmount = (float)cuttingProgressValue / cuttingRecpie.MaxCutShot});
-            Debug.Log($"here is the value of cutting progress : {(float)cuttingProgressValue / cuttingRecpie.MaxCutShot}");
+           // OnCuttingProgress?.Invoke(this, new CuttingProgress{barFillAmount = (float)cuttingProgressValue / cuttingRecpie.MaxCutShot});
+            OnProgressBarIncement?.Invoke(this, new IHasProgressBar.ProgressBarValue {barFillAmount = (float) cuttingProgressValue / cuttingRecpie.MaxCutShot});
+
             if (cuttingRecpie != null && cuttingProgressValue >= cuttingRecpie.MaxCutShot)
             {
                 SpawnCuttingObject(cuttingRecpie.Sliced.prefab.gameObject);

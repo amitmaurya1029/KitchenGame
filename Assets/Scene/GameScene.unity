@@ -135,7 +135,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1148415323}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1382623783}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b811a1f9b95502942a12ebfdbdfa098a, type: 3}
@@ -844,6 +844,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1822367519}
     m_Modifications:
+    - target: {fileID: 49105180995932432, guid: d790bf4fd1b749a42820641888f19679,
+        type: 3}
+      propertyPath: hasProgressBarObject
+      value: 
+      objectReference: {fileID: 2138708943}
     - target: {fileID: 229601640532124003, guid: d790bf4fd1b749a42820641888f19679,
         type: 3}
       propertyPath: stoveOnObject
@@ -901,6 +906,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676758117995797131, guid: d790bf4fd1b749a42820641888f19679,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6485799988043285166, guid: d790bf4fd1b749a42820641888f19679,
         type: 3}
@@ -1260,6 +1270,16 @@ PrefabInstance:
       propertyPath: cuttingCounter
       value: 
       objectReference: {fileID: 109432619}
+    - target: {fileID: 1853505971643415703, guid: 8697fc3b8a98d8647a4d973594044307,
+        type: 3}
+      propertyPath: hasProgressBarObject
+      value: 
+      objectReference: {fileID: 1382623783}
+    - target: {fileID: 6327953665643411212, guid: 8697fc3b8a98d8647a4d973594044307,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6351059627386391801, guid: 8697fc3b8a98d8647a4d973594044307,
         type: 3}
       propertyPath: kitchenObjectSO
@@ -1576,7 +1596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246620661}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3603049, y: -0.03535129, z: 0.013665628, w: 0.93206435}
+  m_LocalRotation: {x: 0.36030486, y: -0.03535125, z: 0.013665609, w: 0.93206435}
   m_LocalPosition: {x: 2.62, y: 7.32, z: -11.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1672,6 +1692,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 245415190390867383, guid: 1374d7af02d387a4e975e7f6f99ff30b,
     type: 3}
   m_PrefabInstance: {fileID: 305783090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1382623783 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6678801540993664066, guid: 8697fc3b8a98d8647a4d973594044307,
+    type: 3}
+  m_PrefabInstance: {fileID: 1148415323}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1414700989
 GameObject:
@@ -1829,7 +1855,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 646047028}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2138708943}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c1db95712329f2489c09901b8e88d5f, type: 3}
@@ -2053,7 +2079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716941349}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3603049, y: -0.03535129, z: 0.013665628, w: 0.93206435}
+  m_LocalRotation: {x: 0.36030486, y: -0.03535125, z: 0.013665609, w: 0.93206435}
   m_LocalPosition: {x: 2.62, y: 7.32, z: -11.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2579,6 +2605,12 @@ CapsuleCollider:
   m_Height: 2.503594
   m_Direction: 1
   m_Center: {x: 0, y: 0.75179696, z: 0}
+--- !u!1 &2138708943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6485799988043285166, guid: d790bf4fd1b749a42820641888f19679,
+    type: 3}
+  m_PrefabInstance: {fileID: 646047028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

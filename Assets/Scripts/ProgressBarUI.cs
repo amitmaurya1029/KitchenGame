@@ -7,17 +7,22 @@ using UnityEngine.UI;
 
 public class ProgressBarUI : MonoBehaviour
 {
+    [SerializeField] private GameObject hasProgressBarObject;
     [SerializeField] private UnityEngine.UI.Image imageBar;
-    
-    [SerializeField] private CuttingCounter cuttingCounter;
+    [SerializeField] private IHasProgressBar progressBarCounter;
 
     void Start()
     {
-        cuttingCounter.OnCuttingProgress += FillProgressBar;
+        progressBarCounter = hasProgressBarObject.GetComponent<IHasProgressBar>();
+        if (progressBarCounter == null)
+        {
+            Debug.LogError("does not contain progressbar interface");
+        }    
+        progressBarCounter.OnProgressBarIncement += FillProgressBar;
         Hide();
     }
 
-    private void FillProgressBar(object sender, CuttingCounter.CuttingProgress e)
+    private void FillProgressBar(object sender, IHasProgressBar.ProgressBarValue e)
     {
         imageBar.fillAmount = e.barFillAmount;
         if (e.barFillAmount == 1)
@@ -29,7 +34,7 @@ public class ProgressBarUI : MonoBehaviour
             Show();
         }
     }
-
+   
     private void Show()
     {
         transform.gameObject.SetActive(true);

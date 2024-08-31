@@ -15,13 +15,14 @@ public class CuttingAnim : MonoBehaviour
     }
     void Start()
     {
-        cuttingCounter.OnCuttingProgress += StartCutting;
+        cuttingCounter.OnProgressBarIncement += StartCutting;
     }
 
-    private void StartCutting(object sender, CuttingCounter.CuttingProgress e)
+    private void StartCutting(object sender, IHasProgressBar.ProgressBarValue e)
     {
-        animator.SetTrigger(CUT);
+         animator.SetTrigger(CUT);
     }
 
+  
    
 }

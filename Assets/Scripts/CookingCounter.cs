@@ -7,15 +7,17 @@ using UnityEditor;
 using UnityEngine;
 
 public enum PattyState {Ideal, Cooking, Cooked, Burned}
-public class CookingCounter : Counter
+
+public class CookingCounter : Counter, IHasProgressBar
 {
     private PattyState pattyState = PattyState.Ideal;
     [SerializeField] private List<CookingRecpieSO> cookingRecpieSO = new List<CookingRecpieSO>();
     [SerializeField] private float time;
     [SerializeField] private Transform target;
 
-    public event EventHandler<PattyState> OnPattyState;
 
+    public event EventHandler<PattyState> OnPattyState;
+    public event EventHandler<IHasProgressBar.ProgressBarValue> OnProgressBarIncement;
 
     void Start()
     {
@@ -31,26 +33,32 @@ public class CookingCounter : Counter
 
             case PattyState.Cooking:
                 time += Time.deltaTime;
+                OnProgressBarIncement.Invoke(this,new IHasProgressBar.ProgressBarValue{barFillAmount = time/cookingRecpieSO[0].CookingTimeMax});
                 if (time >= cookingRecpieSO[0].CookingTimeMax)
                 {
                     ChangePattyState(InputOutput(GetKitchenObject().kitchenObjectSO));
                     pattyState = PattyState.Cooked;
                     OnPattyState?.Invoke(this, pattyState);
+                    OnProgressBarIncement.Invoke(this,new IHasProgressBar.ProgressBarValue{barFillAmount = 0});
                 }
+
                 break;
 
             case PattyState.Cooked:
                 time += Time.deltaTime;
+                 OnProgressBarIncement.Invoke(this,new IHasProgressBar.ProgressBarValue{barFillAmount = time/cookingRecpieSO[1].CookingTimeMax});
                 if (time >= cookingRecpieSO[1].CookingTimeMax)
                 {
                     ChangePattyState(InputOutput(GetKitchenObject().kitchenObjectSO));
                     pattyState = PattyState.Burned;
                     OnPattyState?.Invoke(this, pattyState);
+                    OnProgressBarIncement.Invoke(this,new IHasProgressBar.ProgressBarValue{barFillAmount = 1});
                 }
               
                 break;
 
             case PattyState.Burned:
+                
                 pattyState = PattyState.Ideal;
                 OnPattyState?.Invoke(this, pattyState);
                 break;
@@ -77,6 +85,7 @@ public class CookingCounter : Counter
             pattyState= PattyState.Cooking;
             OnPattyState.Invoke(this, pattyState);
 
+
         }
 
         else
@@ -90,14 +99,13 @@ public class CookingCounter : Counter
                 ClearKitchenObject();
                 pattyState = PattyState.Ideal;
                 OnPattyState.Invoke(this, pattyState);
+                OnProgressBarIncement.Invoke(this,new IHasProgressBar.ProgressBarValue{barFillAmount = 1});
+
             }
             else
             {
                 
             }
-
-
-
         }
     }
 
