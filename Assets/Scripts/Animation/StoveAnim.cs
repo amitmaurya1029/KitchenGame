@@ -16,9 +16,17 @@ public class StoveAnim : MonoBehaviour
 
     private void SetCookingCounterOn(object sender, PattyState e)
     {
-        fryingParticle.SetActive(true);
-        stoveOnObject.SetActive(true);
-
+        if (e != PattyState.Ideal)
+        {
+            fryingParticle.SetActive(true);
+            stoveOnObject.SetActive(true);
+        }
+        else
+        {
+            fryingParticle.SetActive(false);
+            stoveOnObject.SetActive(false);
+        }
+        
     }
 
     

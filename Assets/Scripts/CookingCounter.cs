@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
-public enum PattyState {Ideal, Cooked, Burned}
+public enum PattyState {Ideal, Cooking, Cooked, Burned}
 public class CookingCounter : Counter
 {
     private PattyState pattyState = PattyState.Ideal;
@@ -19,7 +19,7 @@ public class CookingCounter : Counter
 
     void Start()
     {
-        Timer();
+        
     }
 
     void Update()
@@ -29,21 +29,30 @@ public class CookingCounter : Counter
             case PattyState.Ideal:
             break;
 
-            case PattyState.Cooked:
-                Timer();
-                if (time >= 3)
+            case PattyState.Cooking:
+                time += Time.deltaTime;
+                if (time >= cookingRecpieSO[0].CookingTimeMax)
                 {
                     ChangePattyState(InputOutput(GetKitchenObject().kitchenObjectSO));
-                    OnPattyState.Invoke(this, pattyState);
+                    pattyState = PattyState.Cooked;
+                    OnPattyState?.Invoke(this, pattyState);
                 }
                 break;
 
-            case PattyState.Burned:
-                Timer();
-                if (time >= 3)
+            case PattyState.Cooked:
+                time += Time.deltaTime;
+                if (time >= cookingRecpieSO[1].CookingTimeMax)
                 {
                     ChangePattyState(InputOutput(GetKitchenObject().kitchenObjectSO));
+                    pattyState = PattyState.Burned;
+                    OnPattyState?.Invoke(this, pattyState);
                 }
+              
+                break;
+
+            case PattyState.Burned:
+                pattyState = PattyState.Ideal;
+                OnPattyState?.Invoke(this, pattyState);
                 break;
         }
        
@@ -51,34 +60,42 @@ public class CookingCounter : Counter
 
     private void ChangePattyState(KitchenObjectSO patty)
     {
-        Debug.Log($"patty name : {patty}");
         KitchenObjectSO kitchenObject = patty;
-        Destroy(GetKitchenObject().gameObject);
+        GetKitchenObject().DestroySelf();
         KitchenObject.SpawnKitchenObject(kitchenObject.prefab.gameObject, GetTargetPoint(), this);
-        pattyState = PattyState.Burned;
         time = 0;
     }
 
     public override void Interaction(Player player)
     {
-        if (!HasKitchenObject())
+        if (!HasKitchenObject() && player.GetKitchenObject().kitchenObjectSO == cookingRecpieSO[0].Input)
         {
             SetKitchenObject(player.GetKitchenObject());
             GetKitchenObject().SetKitchenObjectParent(this);
             player.ClearKitchenObject();
             player.IsContainKitchenObject(false);
-            pattyState= PattyState.Cooked;
-             OnPattyState.Invoke(this, pattyState);
+            pattyState= PattyState.Cooking;
+            OnPattyState.Invoke(this, pattyState);
 
         }
 
         else
         {
-            // has kitchen object
-            player.SetKitchenObject(GetKitchenObject());
-            GetKitchenObject().SetKitchenObjectParent(player);
-            IsContainKitchenObject(false);
-            ClearKitchenObject();
+            if (HasKitchenObject())
+            {
+                // has kitchen object
+                player.SetKitchenObject(GetKitchenObject());
+                GetKitchenObject().SetKitchenObjectParent(player);
+                IsContainKitchenObject(false);
+                ClearKitchenObject();
+                pattyState = PattyState.Ideal;
+                OnPattyState.Invoke(this, pattyState);
+            }
+            else
+            {
+                
+            }
+
 
 
         }
@@ -98,17 +115,6 @@ public class CookingCounter : Counter
         return null;
 
     }
-
-    private void Timer()
-    {
-        if (time <= 3)
-        {
-            time += Time.deltaTime;
-        }
-    } 
-
-
-
 
 
 }
