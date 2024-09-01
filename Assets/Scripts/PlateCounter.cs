@@ -6,28 +6,18 @@ using UnityEngine;
 
 public class PlateCounter : Counter
 {
-    [SerializeField] private  KitchenObjectSO Plate;
-    private int spawnTimeMax = 1;  
-    private int plateMax = 5;  
-    private List<KitchenObject> plates = new List<KitchenObject>(); 
+    private int spawnTimeMax = 1;   
+    public event EventHandler OnPlateSpawn;
+    public event EventHandler OnPlateRemove;
     private float time; 
     
     void Update()
     {
-        
-        if (plates.Count != plateMax)
+        time += Time.deltaTime;
+        if (time >= spawnTimeMax)
         {
-            time += Time.deltaTime;
-            if (time >= spawnTimeMax)
-            {
-                KitchenObject instantiatedPlate = Instantiate(Plate.prefab.gameObject.GetComponent<KitchenObject>(), GetTargetPoint());
-                plates.Add(instantiatedPlate);
-                SetKitchenObject(instantiatedPlate);
-                Vector3 platePos = GetTargetPoint().position;
-                instantiatedPlate.transform.position = new Vector3(platePos.x, platePos.y * plates.Count * 0.05f + platePos.y, platePos.z);
-                time = 0;
-            }
-            
+            OnPlateSpawn?.Invoke(this, EventArgs.Empty);
+            time = 0;
         }
         else
         {
@@ -35,21 +25,20 @@ public class PlateCounter : Counter
         }
     }
 
-   
-
     public override void Interaction(Player player)
     {
         if (!HasKitchenObject() && player.GetKitchenObject() == null)
         {
-            GetKitchenObject().SetKitchenObjectParent(player);
-            if (plates.Count > 0)
-            {
-                plates.RemoveAt(plates.Count - 1); 
-            }
-            else
-            {
-                plates.RemoveAt(0);
-            }    
+            OnPlateRemove?.Invoke(this,EventArgs.Empty);
+           // GetKitchenObject().SetKitchenObjectParent(player);
+            // if (plates.Count > 0)
+            // {
+            //     plates.RemoveAt(plates.Count - 1); 
+            // }
+            // else
+            // {
+            //     plates.RemoveAt(0);
+            // }    
         }
 
         else

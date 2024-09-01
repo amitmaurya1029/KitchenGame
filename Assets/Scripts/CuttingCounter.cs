@@ -61,7 +61,6 @@ public class CuttingCounter : Counter, IHasProgressBar
         {
             cuttingProgressValue++;
             CuttingRecpieSO cuttingRecpie = InputOutput();
-           // OnCuttingProgress?.Invoke(this, new CuttingProgress{barFillAmount = (float)cuttingProgressValue / cuttingRecpie.MaxCutShot});
             OnProgressBarIncement?.Invoke(this, new IHasProgressBar.ProgressBarValue {barFillAmount = (float) cuttingProgressValue / cuttingRecpie.MaxCutShot});
 
             if (cuttingRecpie != null && cuttingProgressValue >= cuttingRecpie.MaxCutShot)
