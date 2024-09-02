@@ -36,8 +36,9 @@ public class PlateVisual : MonoBehaviour
         if (plates.Count > 0)
         {
             KitchenObject plate = plates[plates.Count - 1].gameObject.GetComponent<KitchenObject>();
+            plateCounter.SetKitchenObject(plate);
             plates.Remove(plate);
-            Destroy(plate.gameObject); 
+            //Destroy(plate.gameObject); 
 
         }
 
