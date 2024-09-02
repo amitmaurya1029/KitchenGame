@@ -40,7 +40,6 @@ public class ClearCounter : Counter
             else
             {
                 // player has kitchenObject.
-                // is player have a plate
                 if (player.GetKitchenObject() is PlateKitchenObject)
                 {
                     // player has plate
@@ -55,6 +54,22 @@ public class ClearCounter : Counter
                         // did'nt adde ingredient to plate.
                     }
                     
+                }
+                else
+                {
+                    // we have a plate than we can add ingredient to plate
+
+                    if (GetKitchenObject() is PlateKitchenObject)
+                    {
+                        Debug.Log("yes we got a plate kitchenobject here :");
+                        if (GetKitchenObject().GetComponent<PlateKitchenObject>().TryAddIngredient(player.GetKitchenObject().
+                        GetComponent<KitchenObject>().kitchenObjectSO))
+                        {
+                            player.GetKitchenObject().DestroySelf();
+                            player.IsContainKitchenObject(false);
+                        }
+                    }
+
                 }
 
             }
