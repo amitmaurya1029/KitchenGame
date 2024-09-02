@@ -31,14 +31,7 @@ public class PlateCounter : Counter
         {
             OnPlateRemove?.Invoke(this,EventArgs.Empty);
             GetKitchenObject().SetKitchenObjectParent(player);
-            // if (plates.Count > 0)
-            // {
-            //     plates.RemoveAt(plates.Count - 1); 
-            // }
-            // else
-            // {
-            //     plates.RemoveAt(0);
-            // }    
+          
         }
 
         else

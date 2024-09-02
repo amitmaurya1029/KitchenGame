@@ -24,9 +24,9 @@ public class PlateVisual : MonoBehaviour
         {
             KitchenObject instantiatedPlate = Instantiate(Plate.prefab.gameObject.GetComponent<KitchenObject>(), target);
             plates.Add(instantiatedPlate);
-            // SetKitchenObject(instantiatedPlate);
             Vector3 platePos = target.position;
             instantiatedPlate.transform.position = new Vector3(platePos.x, platePos.y * plates.Count * 0.05f + platePos.y, platePos.z);
+            plateCounter.SetKitchenObject(instantiatedPlate);
         }
     }
 
@@ -36,7 +36,7 @@ public class PlateVisual : MonoBehaviour
         if (plates.Count > 0)
         {
             KitchenObject plate = plates[plates.Count - 1].gameObject.GetComponent<KitchenObject>();
-            plateCounter.SetKitchenObject(plate);
+            //plateCounter.SetKitchenObject(plate);
             plates.Remove(plate);
             //Destroy(plate.gameObject); 
 
