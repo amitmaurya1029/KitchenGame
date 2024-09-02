@@ -29,6 +29,7 @@ public class PlateCounter : Counter
     {
         if (!HasKitchenObject() && player.GetKitchenObject() == null)
         {
+            // has no kitchenObject
             OnPlateRemove?.Invoke(this,EventArgs.Empty);
             GetKitchenObject().SetKitchenObjectParent(player);
           

@@ -37,8 +37,26 @@ public class ClearCounter : Counter
                 ClearKitchenObject();
             }
 
-            else{
+            else
+            {
                 // player has kitchenObject.
+                // is player have a plate
+                if (player.GetKitchenObject() is PlateKitchenObject)
+                {
+                    // player has plate
+                    KitchenObject kitchenObject = GetKitchenObject();
+                    if (player.GetKitchenObject().GetComponent<PlateKitchenObject>().TryAddIngredient(kitchenObject.kitchenObjectSO))
+                    {
+                        GetKitchenObject().DestroySelf();
+                        IsContainKitchenObject(false);
+                    }
+                    else
+                    {
+                        // did'nt adde ingredient to plate.
+                    }
+                    
+                }
+
             }
 
 
