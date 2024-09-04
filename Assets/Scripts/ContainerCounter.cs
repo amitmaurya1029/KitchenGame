@@ -19,7 +19,17 @@ public class ContainerCounter : Counter
         }
         else
         {
-            Debug.Log($"there is a KitchenObject already");
+            // player has kitchenObject
+            if (player.GetKitchenObject() is PlateKitchenObject)
+            {
+                if (player.GetKitchenObject().GetComponent<PlateKitchenObject>().TryAddIngredient(kitchenObjectSO))
+                {
+                    // if it is plate can add kitchenObject to plate  
+                    Debug.Log("Yes we have added the ingredient to plate on continer counter :");
+                    OnContainerCounterInteraction?.Invoke(this, EventArgs.Empty);
+                }
+
+            }
         }
         
     }
