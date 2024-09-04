@@ -78,6 +78,7 @@ public class CookingCounter : Counter, IHasProgressBar
     {
         if (!HasKitchenObject() && player.GetKitchenObject().kitchenObjectSO == cookingRecpieSO[0].Input)
         {
+            // has no kitchenObject
             SetKitchenObject(player.GetKitchenObject());
             GetKitchenObject().SetKitchenObjectParent(this);
             player.ClearKitchenObject();
@@ -93,14 +94,30 @@ public class CookingCounter : Counter, IHasProgressBar
             if (HasKitchenObject())
             {
                 // has kitchen object
-                player.SetKitchenObject(GetKitchenObject());
-                GetKitchenObject().SetKitchenObjectParent(player);
-                IsContainKitchenObject(false);
-                ClearKitchenObject();
-                pattyState = PattyState.Ideal;
-                OnPattyState.Invoke(this, pattyState);
-                OnProgressBarIncement.Invoke(this,new IHasProgressBar.ProgressBarValue{barFillAmount = 1});
+                if (player.GetKitchenObject() is PlateKitchenObject)
+                {
+                    player.GetKitchenObject().GetComponent<PlateKitchenObject>().
+                    TryAddIngredient(GetKitchenObject().GetComponent<KitchenObject>().kitchenObjectSO);
+                    GetKitchenObject().DestroySelf();
+                    IsContainKitchenObject(false);
+                    ClearKitchenObject();
+                    pattyState = PattyState.Ideal;
+                    OnPattyState.Invoke(this, pattyState);
+                    OnProgressBarIncement.Invoke(this,new IHasProgressBar.ProgressBarValue{barFillAmount = 1});
+                }
+                else
+                {
+                    player.SetKitchenObject(GetKitchenObject());
+                    GetKitchenObject().SetKitchenObjectParent(player);
+                    IsContainKitchenObject(false);
+                    ClearKitchenObject();
+                    pattyState = PattyState.Ideal;
+                    OnPattyState.Invoke(this, pattyState);
+                    OnProgressBarIncement.Invoke(this,new IHasProgressBar.ProgressBarValue{barFillAmount = 1});
 
+                }
+
+              
             }
             else
             {
