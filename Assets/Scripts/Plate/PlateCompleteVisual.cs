@@ -26,17 +26,19 @@ public class PlateCompleteVisual : MonoBehaviour
         }
     }
 
-    private void UpdateTheBurgerVisual(object sender, KitchenObjectSO e)
+    private void UpdateTheBurgerVisual(object sender, PlateKitchenObject.IngredientEventArgs e)
     {
-        foreach (var item in ingredients)
+         foreach (var item in ingredients)
         {
-            if (item.kitchenObjectSO == e)
+            if (item.kitchenObjectSO == e.kitchenObjectSO)
             {
                 item.kitchenObject.SetActive(true);
             } 
             
         }
     }
+
+   
 
   
    

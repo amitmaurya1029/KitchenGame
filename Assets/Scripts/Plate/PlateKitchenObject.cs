@@ -7,14 +7,15 @@ public class PlateKitchenObject : KitchenObject
 {
 
     // adding the the individual ingredients onto plate to make a whole burger.
-    public List<KitchenObjectSO> Ingredient;
+    private List<KitchenObjectSO> Ingredient;
     public List<KitchenObjectSO> ValidKitchenObjectsSo;
-    public event EventHandler<KitchenObjectSO> OnIngredientAdd;
+    public event EventHandler<IngredientEventArgs> OnIngredientAdd;
 
-    // private class IngredientEventArgs : EventArgs
-    // {
-    //     public KitchenObjectSO
-    // }
+    public class IngredientEventArgs : EventArgs
+    {
+        public KitchenObjectSO kitchenObjectSO;
+        public List<KitchenObjectSO> kitchenObjectSOList;
+    }
 
     void Awake()
     {
@@ -32,7 +33,7 @@ public class PlateKitchenObject : KitchenObject
         if (ValidKitchenObjectsSo.Contains(ingredient))
         {
             Ingredient.Add(ingredient);
-            OnIngredientAdd?.Invoke(this,ingredient);
+            OnIngredientAdd?.Invoke(this, new IngredientEventArgs {kitchenObjectSO = ingredient, kitchenObjectSOList = Ingredient} );
             return true;
         }
         else
