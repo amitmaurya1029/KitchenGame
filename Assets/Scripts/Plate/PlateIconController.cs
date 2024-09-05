@@ -27,7 +27,7 @@ public class PlateIconController : MonoBehaviour
         foreach (KitchenObjectSO item in e.kitchenObjectSOList)
         {
             GameObject icon = Instantiate(imageTemplete, transform);
-            icon.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = item.sprite;
+            icon.GetComponent<SingleIconUI>().SetIcon(item);
             icon.SetActive(true);
         }
     }
